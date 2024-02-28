@@ -1,0 +1,65 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/* You can add global styles to this file, and also import other style files */
+:root{
+  --grass: #3E9709;
+  --grass-light: #7EB95B;
+  --fire: #FC0C0B;
+  --fire-light: #FD5D5C;
+  --water: #0A7ABC;
+  --water-light: #5BA6D2;
+  --normal: #CCC9AA;
+  --normal-light: #DDDBC6;
+  --flying: #5EB9B2;
+  --flying-light: #93D0CB;
+  --bug: #91BA2E;
+  --bug-light: #BDDD6E;
+  --poison: #A819D7;
+  --poison-light: #C565E4;
+  --electric: #FFFA24;
+  --electric-light: #FFFB6D;
+  --ground: #E1D158;
+  --ground-light: #EDE293;
+  --fighting: #E81319;
+  --fighting-light: #EF6165;
+  --psychic: #EC0E63;
+  --psychic-light: #F55792;
+  --rock: #776A3E;
+  --rock-light: #94834F;
+  --ice: #1995A1;
+  --ice-light: #65B8C0;
+  --ghost: #8E55A4;
+  --ghost-light: #B38DC2;
+  --dragon: #8A55FD;
+  --dragon-light: #B18DFD;
+  --dark: #5F4632;
+  --dark-light: #916852;
+  --steel: #7B8E8A;
+  --steel-light: #BBC5C4;
+  --fairy: #FFA0C2;
+  --fairy-light: #FDD1E0;
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body{
+  min-height: 100vh;
+  box-sizing: border-box;
+  position: relative;
+  padding-bottom: 50px;
+}
+
+footer{
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  background-color: crimson;
+  color: white;
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 100%;
+  padding: 10px;
+}

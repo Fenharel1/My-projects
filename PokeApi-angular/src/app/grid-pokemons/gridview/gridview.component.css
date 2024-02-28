@@ -1,0 +1,17 @@
+.gridview{
+  display: flex;
+  gap: 3px;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  max-height: 85%;
+  overflow: auto;
+  padding: 10px;
+  margin: 10px;
+}
+
+mat-paginator{
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  left: 0;
+}

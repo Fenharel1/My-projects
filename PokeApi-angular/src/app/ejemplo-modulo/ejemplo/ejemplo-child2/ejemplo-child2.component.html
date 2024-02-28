@@ -1,0 +1,11 @@
+<p>ejemplo-child2 works!</p>
+<h1>Moves</h1>
+<div [formGroup]="formGroupMoves">
+  <div *ngFor="let move of moves">
+    <h4>{{move.move.name}}</h4>
+    <ng-container *ngFor="let vgd of move.version_group_details">
+      <h5>{{vgd.level_learned_at}}</h5>
+      <h5>{{vgd.move_learn_method.name}}</h5>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+.images img{
+  height: 200px;
+}
+
+.images{
+  display: flex;
+  justify-content: space-around;
+}
+
+.dialog-content h2{
+  margin: 10px 0;
+}
+
+.dialog-content mat-divider:first-child{
+  margin-top: 10px;
+}
+
+.mat-dialog-actions{
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-extra{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.info-extra>div {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-extra div div{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+}
+
+.info-extra div div p{
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-extra div div span{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  color: white;
+  /* background-color: purple; */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pokebola {
+  width: 400px;
+  position: absolute;
+  left: calc(50% - 200px);
+  top: 0;
+  height: 100%;
+  z-index: 9;
+  background-color: aliceblue;
+}
+
+.pokebola-top, .pokebola-bottom{
+  display: none;
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border-bottom: 300px solid red;
+  border-right: 200px solid transparent;
+  border-left: 200px solid transparent;
+  border-radius: 50%;
+  z-index: 10;
+  left: calc(50% - 200px);
+  transition: 1s;
+}
+
+.pokebola-top{
+  top: -120px;
+  background-color: red;
+}
+
+.pokebola-bottom{
+  bottom: -120px;
+  background-color: gray;
+}
+
+.pokebola:hover .pokebola-top{
+  top: calc(50% - 200px);
+}
+.pokebola:hover .pokebola-bottom{
+  bottom: calc(50% - 200px);
+}

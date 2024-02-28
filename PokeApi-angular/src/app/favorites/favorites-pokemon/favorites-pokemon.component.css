@@ -1,0 +1,18 @@
+h2{
+  text-align: center;
+  padding: 20px;
+}
+
+.wrapper-grid{
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 15px;
+  height: 80%;
+  width: 100%;
+  padding: 10px 20px;
+  margin: 10px auto;
+  overflow: auto;
+}

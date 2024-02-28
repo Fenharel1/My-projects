@@ -1,0 +1,17 @@
+<div *ngIf="mostrarData" class="gridview" >
+  <p *ngFor="let item of pokemonObservableSlice ">
+    <app-gridcard [pokemon]="(item|async) ?? pokemonDefecto" ></app-gridcard>
+  </p>
+</div>
+<div *ngIf="!mostrarData" class="gridview">
+  <p *ngFor="let item of pokemonObjectList ">
+    <app-gridcard [pokemon]="item" ></app-gridcard>
+  </p>
+</div>
+<mat-paginator
+  [length]="length"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="pageSizeOptions"
+  aria-label="select page"
+>
+</mat-paginator>

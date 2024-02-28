@@ -1,0 +1,18 @@
+<p>header ejemplo works!</p>
+<h1>Reactive</h1>
+  <button mat-raised-button color="primary" (click)="hideReactive()">hide</button>
+  <button mat-raised-button color="accent" (click)="hideReactive()">hide</button>
+  <app-reactive *ngIf="hidden"></app-reactive>
+  <h1>Reactive</h1>
+  <!-- <router-outlet></router-outlet> -->
+  <app-ejemplo-child *ngIf="objectPokemon; else noPokemon"
+  (onChangePokemon)="onChangePokemon($event)"
+  [namePokemon]="objectPokemon.name"></app-ejemplo-child>
+  <ng-template #noPokemon>
+    No hay pokemon
+  </ng-template>
+  <!-- <app-ejemplo-child [namePokemon]="objectPokemon?.name"></app-ejemplo-child> -->
+  <app-ejemplo-child2 *ngIf="objectPokemon" [moves]="objectPokemon.moves"></app-ejemplo-child2>
+<div>
+  Footer
+</div>

@@ -1,0 +1,75 @@
+.grid-card {
+  width: 150px;
+  background-color: white;
+  box-shadow: 2px 2px 5px black;
+  color: black;
+  margin: 1px;
+  height: 260px;
+}
+
+mat-card{
+  padding: 10px;
+  overflow: hidden;
+}
+
+.grid-card mat-card-header{
+  width: 100%;
+}
+
+.grid-card img {
+  background-color: #f1f1f1;
+  width: 180px;
+}
+
+.grid-card mat-card-title{
+  display: flex;
+  justify-content: space-between;
+  text-transform: capitalize;
+  width: 120px;
+  margin-bottom: 0px;
+}
+
+.grid-card mat-card-subtitle{
+  color: black;
+}
+
+.grid-card ul{
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  justify-content: space-around;
+}
+
+.grid-card mat-card-actions{
+  padding-top: 0px;
+}
+
+.grid-card li p{
+  padding: 2px 5px;
+  border-radius: 10px;
+  color: white;
+}
+
+.favButton{
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  font-size: 1.3em;
+  border: none;
+  opacity: 0;
+  transition: 0.5s;
+  color: gray;
+}
+
+.grid-card:hover .favButton{
+  opacity: 1;
+  transition: 0.25s;
+}
+
+.grid-card:hover{
+  box-shadow: 2px 2px 6px crimson;
+}
+
+.grid-card:hover .favButton:hover{
+  color: cornflowerblue;
+}

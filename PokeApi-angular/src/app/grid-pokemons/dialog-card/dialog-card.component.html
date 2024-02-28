@@ -1,0 +1,50 @@
+  <h1 mat-dialog-title>{{data.name}}</h1>
+  <!-- <div class="pokebola">
+    <div class="pokebola-top"></div>
+    <div class="pokebola-bottom"></div>
+  </div> -->
+
+  <div class="dialog-content" mat-dialog-content style="height: 80%; overflow-x: hidden;">
+    <div class="images">
+      <img src="{{data.sprites.front_default}}" alt="">
+      <img src="{{data.sprites.back_default}}" alt="">
+    </div>
+    <mat-divider></mat-divider>
+    <h2>Types</h2>
+    <mat-chip-list aria-label="type group">
+      <ng-container *ngFor="let type of data.types">
+        <mat-chip style="color:white;" [ngStyle]="{'background-color': 'var(--' + type.type.name + ')'}">
+          {{type.type.name}}
+        </mat-chip>
+      </ng-container>
+    </mat-chip-list>
+    <div class="info-extra">
+      <div>
+        <mat-divider></mat-divider>
+        <div>
+          <p>Base experience:</p>
+          <span [ngStyle]="{'background-color': 'var(--' + data.types[0].type.name + ')'}" >{{data.base_experience}}</span>
+        </div>
+      </div>
+      <div>
+        <mat-divider></mat-divider>
+        <div>
+          <p>Height:</p>
+          <span [ngStyle]="{'background-color': 'var(--' + data.types[0].type.name + ')'}">{{data.height}}</span>
+        </div>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="abilities">
+      <h2>Abilities</h2>
+      <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let abilitie of data.abilities">- {{abilitie.ability.name}}</mat-list-item>
+      </mat-list>
+    </div>
+
+  </div>
+  <div class="mat-dialog-actions">
+    <!-- <div class="mat-button" (click)="onClickClose()">Close</div> -->
+    <div class="mat-button" (click)="onClickClose()" >Back</div>
+    <button mat-raised-button color="primary" (click)="addToFav()">Add to Fav</button>
+  </div>

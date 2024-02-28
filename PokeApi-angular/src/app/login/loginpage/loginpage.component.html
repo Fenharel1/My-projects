@@ -1,0 +1,21 @@
+<div class="wrapper-login">
+  <img class="img-logo" src="https://1000marcas.net/wp-content/uploads/2020/01/Logo-Pokemon-640x400.png" alt="">
+  <form [formGroup]="formLogin" (submit)="login()" class="login-form" >
+    <div class="group-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your email (user@innovar.com)</mat-label>
+        <input formControlName="email" matInput placeholder="user@example.com" required>
+        <mat-error *ngIf="formLogin.get('email')?.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="group-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password (password)</mat-label>
+        <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+      </mat-form-field>
+    </div>
+    <div>
+      <button type="submit">Log In</button>
+    </div>
+  </form>
+</div>

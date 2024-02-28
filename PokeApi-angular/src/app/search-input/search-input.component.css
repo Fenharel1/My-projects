@@ -1,0 +1,30 @@
+.example-form {
+  min-width: 150px;
+  background-color: #f1f1f1;
+  border-radius: 30px;
+  max-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 10px;
+  width: 100%;
+  padding: 5px;
+  color: black;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+button[type='button']{
+  height: 30px;
+  width: 30px;
+  border: none;
+  color: gray;
+  background-color: transparent;
+}
+
+button[type='button']:hover{
+  color:black;
+}

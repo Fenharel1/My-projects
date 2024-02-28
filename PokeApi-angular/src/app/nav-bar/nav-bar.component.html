@@ -1,0 +1,25 @@
+<div class="header">
+  <div class="logo">Pokedex Project</div>
+  <app-search-input *ngIf="showBuscador" ></app-search-input>
+  <nav *ngIf="!hideNav" [ngClass]="{'nav-responsive':responsiveMenu}">
+    <ul>
+      <li>
+        <button id="navResButton" (click)="openResponsiveMenu()" class="btn-responsive">
+          <i [ngClass]="{'bi bi-list':!responsiveMenu,'bi bi-x-lg':responsiveMenu}"></i>
+        </button>
+      </li>
+      <li>
+        <a (click)="responsiveMenu=false" routerLinkActive="active" routerLink="/home">Home</a>
+      </li>
+      <li>
+        <a routerLinkActive="active" routerLink="/catalogo" (click)="loadSeachInput('catalogo')" >Catalogo</a>
+      </li>
+      <li>
+        <a routerLinkActive="active" routerLink="/favoritos" (click)="loadSeachInput('favoritos')">Favoritos</a>
+      </li>
+      <li *ngIf="islogged">
+        <a routerLinkActive="active" (click)="logout()">Log out</a>
+      </li>
+    </ul>
+  </nav>
+</div>

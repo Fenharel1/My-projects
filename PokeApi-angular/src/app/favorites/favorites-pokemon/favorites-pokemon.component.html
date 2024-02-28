@@ -1,0 +1,5 @@
+<h2>My pokemons favorites</h2>
+
+<div class="wrapper-grid">
+  <app-fav-card [pokemon]=item *ngFor="let item of (pokemonFavList | async)" class="favCard">{{item.name}}</app-fav-card>
+</div>
