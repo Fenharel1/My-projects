@@ -1,7 +1,7 @@
 import React from "react";
-import { FormLogin } from "./components/LoginForm";
+import { FormLogin } from "../components/LoginForm";
 
-const LoginPage = () => {
+export const LoginPage = () => {
   return (
     <div className="h-screen w-screen bg-[#FFF1E4] flex items-center justify-center">
       <div className="flex flex-row rounded-[15px] overflow-hidden shadow-[4px_4px_140px_rgba(0,0,0,0.25)]">
@@ -31,5 +31,3 @@ const LoginPage = () => {
     </div>
   );
 };
-
-export default LoginPage;

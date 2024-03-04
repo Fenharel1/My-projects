@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BsCheck } from 'react-icons/bs'
+import { AuthContext } from "../context/AuthContext";
 
 const initForm = {
   username: '',
@@ -8,23 +9,26 @@ const initForm = {
 };
 
 export const FormLogin = () => {
+
+  const {login, handleLogin, errors} = useContext(AuthContext)
+
   const [formLogin, setFormLogin] = useState(initForm);
   const { username, password, rememberme } = formLogin;
 
-  const InputTextStyle = "w-full h-[53px] border-[2px] border-[#878787] outline-none rounded-[5px] px-4 py-3";
+  const InputTextStyle = "w-full h-[53px] border-[2px] border-[#E7E7E7] outline-none rounded-[5px] px-4 py-3";
 
-  const handleLogin = (e) => {
+  const onLogin = (e) => {
     e.preventDefault();
-    console.log("iniciando login", formLogin);
+    handleLogin(username, password, rememberme) 
   };
 
   const handleChange = ({ target: { value, name } }) => {
     setFormLogin({ ...formLogin, [name]: value });
   };
   return (
-    <form onSubmit={(e) => handleLogin(e)} className="space-y-9">
+    <form onSubmit={(e) => onLogin(e)} className="space-y-9">
       <div>
-        <label className="font-medium text-lg block mb-2" htmlFor="username">
+        <label className="font-medium text-lg block mb-2 " htmlFor="username">
           User Name
         </label>
         <input
@@ -34,6 +38,7 @@ export const FormLogin = () => {
           name="username"
           className={InputTextStyle}
         />
+        <p className="text-red-400 my-1">{errors?.username}</p>
       </div>
       <div>
         <label className="font-medium text-lg block mb-2" htmlFor="password">
@@ -46,6 +51,7 @@ export const FormLogin = () => {
           name="password"
           className={InputTextStyle}
         />
+        <p className="text-red-400 my-1">{errors?.password}</p>
       </div>
       <div className="flex justify-between">
         <div className="space-x-3 flex items-center justify-between flex-row">
