@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { BiSolidDashboard } from "react-icons/bi";
 import { FaPlateWheat } from "react-icons/fa6";
 import { BsPeopleFill } from "react-icons/bs";
@@ -34,8 +34,11 @@ export const Sidebar = () => {
   const { handleLogout, login } = useContext(AuthContext);
   const navigate = useNavigate();
 
+
   return (
-    <aside className="bg-[#FFB671] rounded-[0px_40px_40px_0px] h-screen p-8 relative w-fit left-0 top-0">
+    <aside className=" rounded-[0px_40px_40px_0px] h-screen p-8 relative w-fit left-0 top-0
+      bg-[linear-gradient(0deg,#E6ACF2,#E6ACF2_40%,#FDD6BB)] 
+    ">
       <div className="flex flex-col items-center justify-between h-full w-[15rem]">
         <div className="flex flex-col items-center gap-y-8">
           <p className="text-[#7F7F7F] font-black text-4xl">RestAPIrant</p>
@@ -56,10 +59,9 @@ export const Sidebar = () => {
                   <NavLink key={idx}
                   end
                   className={({isActive})=>[
-                    isActive?"bg-white text-black" :"",
+                    isActive?"!bg-white !text-black" :"",
                     "flex flex-row justify-start items-center text-lg gap-x-2 w-full hover:bg-white rounded-[0.5rem] py-3 px-3 text-white hover:text-black"
                   ].join(" ")}
-
                   to={op.link}
                   >
                     <span className="text-2xl">{op.icon}</span> 

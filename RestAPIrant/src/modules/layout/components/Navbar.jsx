@@ -9,7 +9,7 @@ export const Navbar = () => {
   const {login:{username}} = useContext(AuthContext)
   return (
     <nav className="flex flex-row justify-between items-center">
-      <div className="w-[25rem]">
+      <div className="max-w-[25rem] w-full ">
         <SearchForm></SearchForm> 
       </div>
       <div className="flex gap-x-5">

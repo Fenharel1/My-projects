@@ -5,7 +5,7 @@ export const Layout = ({children}) => {
   return (
     <div className="flex flex-row">
       <Sidebar></Sidebar>
-      <div className="py-4 px-8 w-full space-y-4">
+      <div className="py-4 px-8 w-full space-y-4 overflow-hidden h-screen">
         <Navbar></Navbar> 
         {children}
       </div>
