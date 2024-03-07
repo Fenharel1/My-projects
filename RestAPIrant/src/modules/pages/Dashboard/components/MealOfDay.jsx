@@ -1,16 +1,23 @@
 import { BsFillStopwatchFill } from "react-icons/bs";
 import { FaRegStar } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
-import { StarsRate } from "./StarsRate";
+import { StarsRate } from "../../../components/StarsRate";
 import { useEffect, useState } from "react";
-import { getRecipeOfDay } from "../../services/recipesService";
+import { getRecipeOfDay } from "../../../../services/recipesService";
+import { useNavigate } from "react-router-dom";
 
-export const MealOfDay = () => {
+export const MealOfDay = ({onHide}) => {
   const [mealOfDay, setMealOfDay] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setMealOfDay(getRecipeOfDay());
   }, []);
+
+  const goToRecipe = () => {
+    navigate("recipe/"+mealOfDay.id)
+  }
 
   return (
     <div className="bg-[#FFF6ED] w-full overflow-hidden border-[#D2D2D2] border-[2px] shadow-[0px_0px_150px_rgba(0,0,0,0.15)] rounded-[20px]">
@@ -26,7 +33,7 @@ export const MealOfDay = () => {
               Meal Of the day!
             </div>
           </div>
-          <div className="px-6 py-4 space-y-3">
+          <div className="px-6 py-4 space-y-3 bg-[linear-gradient(10deg,#FFC9BD,#FAE3D7_50%,#FFF0E2)]">
             <h2 className="text-4xl font-semibold">{mealOfDay.name}</h2>
             <div className="flex flex-row items-center justify-between h-8 [&>div]:h-full [&>div]:rounded-[10px]">
               <div className="bg-[#BFE9B0] p-2 flex items-center gap-x-2 text-[#659D51]">
@@ -50,7 +57,18 @@ export const MealOfDay = () => {
             </div>
             <div>
               <p className="text-2xl mt-4 mb-2 font-medium">Instructions</p>
-              <p className="font-light">{mealOfDay.instructions}</p>
+              <p className="font-light">{mealOfDay.instructions[0]}</p>
+            </div>
+            <div className="flex items-center justify-between">
+              <button className="bg-blue-400 px-3 py-1 rounded-md font-semibold hover:bg-blue-300 text-white"
+              onClick={goToRecipe}
+              >
+                Go to recipe
+              </button>
+              <button className="bg-red-400 px-3 py-1 rounded-md font-semibold hover:bg-red-300 text-white"
+              onClick={onHide}>
+                Hide
+              </button>
             </div>
           </div>
         </>

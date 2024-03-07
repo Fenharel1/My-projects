@@ -1,19 +1,31 @@
 import { BsFillStopwatchFill } from "react-icons/bs";
 import { StarsRate } from "./StarsRate";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 export const CardRecipe = ({ recipe }) => {
+
+  const imgRef = useRef(null);
+
   const { name, author, img, time, stars } = recipe;
 
   const navigate = useNavigate();
 
   const goToDetails = () => {
-    console.log(name)
+    navigate('recipe/'+recipe.id)
+  }
+
+  const scaleImg = (scale) => {
+    if(imgRef.current){
+      imgRef.current.style.scale = scale?'1.15':'1'
+    }
   }
 
   return (
-    <div onClick={goToDetails} className="border-[3px] overflow-hidden min-w-[18rem] max-w-[18rem] rounded-[1rem]">
-      <img className="object-cover w-full" src={img} alt={name + " img"} />
+    <div onClick={goToDetails} onMouseEnter={e=>scaleImg(true)} onMouseLeave={e=>scaleImg(false)} className="border-[3px] overflow-hidden min-w-[18rem] max-w-[18rem] rounded-[1rem] cursor-pointer">
+      <div className="overflow-hidden w-full">
+        <img ref={imgRef} className="object-cover w-full transition-all" src={img} alt={name + " img"} />
+      </div>
       <div className="p-4">
         <p className="font-bold text-lg">{name}</p>
         <p className="font-regular ">{author}</p>
