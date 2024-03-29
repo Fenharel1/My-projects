@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { getRecipeById } from "../../../services/recipesService";
 import { SlUserFollow } from "react-icons/sl";
 import { SlUserFollowing } from "react-icons/sl";
 import { StarsRate } from "../../components/StarsRate";
+import { RatingForm } from "./components/RatingForm";
+import { RecipeComment } from "./components/RecipeComment";
 
 const ProgressBar = ({ value, h = "1rem", w = "full", bg, fg, r = "7px" }) => {
   return (
@@ -19,6 +21,19 @@ const ProgressBar = ({ value, h = "1rem", w = "full", bg, fg, r = "7px" }) => {
     </div>
   );
 };
+
+
+const initialComment = 
+  {
+    author: {
+      img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      name: 'Josefina torrez',
+    },
+    date: '25 Ene 2024',
+    stars: 4,
+    prepared: true,
+    comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+  }
 
 export const RecipePage = () => {
   const { id } = useParams();
@@ -291,11 +306,25 @@ export const RecipePage = () => {
         {/* your opinion */}
         <div className="h-1 w-full bg-[#D9D9D9] my-10"></div>
         <div>
-          <p className="font-bold text-2xl text-center">Tell us your opinion!</p>
+          <p className="font-bold text-3xl text-center">Tell us your opinion!</p>
+          <RatingForm></RatingForm>
         </div>
         <div className="h-1 w-full bg-[#D9D9D9] my-10"></div>
         {/* comments */}
+        <div>
+          <p className="font-bold text-3xl text-center">Comments and Ratings</p>
+          <div className="space-y-10 w-full">
+            {
+              (new Array(3)).fill(0).map(e=>{return {...initialComment}}).map((c,idx)=>{
+                return <RecipeComment comment={c} key={idx}></RecipeComment>
+              })
+            }
+          </div>
+        </div>
         {/* wanna see more ? */}
+        <div className="flex items-center justify-center py-5">
+          <NavLink to='/dashboard' className="text-[#6D6D6D] bg-[#FBD3AE] text-lg px-10 py-2 rounded-xl font-semibold">Wanna see more?</NavLink>
+        </div>
       </div>
     </div>
   );
