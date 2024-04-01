@@ -15,9 +15,9 @@ const options = [
     link: "",
   },
   {
-    label: "By Ingredients",
+    label: "Find Recipes",
     icon: <FaPlateWheat></FaPlateWheat>,
-    link: "byingredients",
+    link: "find-recipes",
   },
   {
     label: "Following",
