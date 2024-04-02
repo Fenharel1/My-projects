@@ -10,7 +10,7 @@ export const Navbar = () => {
   return (
     <nav className="flex flex-row justify-between items-center">
       <div className="max-w-[25rem] w-full ">
-        <SearchForm></SearchForm> 
+        <SearchForm placeholder={'Search recipes'}></SearchForm> 
       </div>
       <div className="flex gap-x-5">
         <div className=" relative w-min h-min">

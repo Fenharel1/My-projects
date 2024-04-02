@@ -1,21 +1,19 @@
 import { FaRegStar, FaStar } from "react-icons/fa6";
 
-export const StarsRate = ({ stars, size='1rem' }) => {
+export const StarsRate = ({ stars, size='1rem', showAll=true }) => {
   return (
-    <div className="flex justify-between gap-x-2 w-full" style={{fontSize:size}}>
-      {/* {new Array(5).fill(0).map((_, idx) => {
-        return idx >= stars ? (
-          <FaRegStar key={idx}  ></FaRegStar>
-        ) : (
-          <FaStar key={idx} ></FaStar>
-        );
-      })} */}
+    <div className="flex justify-start gap-x-2 w-full" style={{fontSize:size}}>
       {
         new Array(5).fill(0).map((_,idx)=>{
-          return (
-            <div key={idx} style={{fontSize:size}}>
-              {idx >= stars ? <FaRegStar></FaRegStar> : <FaStar></FaStar>}
-            </div>
+          if(idx < stars) return (
+              <div key={idx} style={{fontSize:size}}>
+                <FaStar></FaStar>
+              </div>
+          )
+          if(idx >= stars && showAll) return (
+              <div key={idx} style={{fontSize:size}}>
+                <FaRegStar></FaRegStar>
+              </div>
           )
         })
       }
