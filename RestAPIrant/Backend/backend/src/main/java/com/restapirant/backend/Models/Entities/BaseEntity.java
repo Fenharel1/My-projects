@@ -1,6 +1,7 @@
 package com.restapirant.backend.Models.Entities;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
