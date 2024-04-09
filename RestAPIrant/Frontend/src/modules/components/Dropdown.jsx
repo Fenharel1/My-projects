@@ -15,7 +15,7 @@ export const Dropdown = ({
   const onSelect = (val) => {
     setSelected(val.element);
     setShow(false);
-    onChange(val);
+    onChange(val.value);
   };
 
   return (
@@ -43,7 +43,7 @@ export const Dropdown = ({
         </div>
         {!show || (
           <div
-            className="absolute text-black left-0 w-max top-[115%] rounded-lg overflow-y-auto max-h-[20rem] custom-scroll border border-gray-400 p-2"
+            className="absolute text-black left-0 w-max top-[115%] rounded-lg overflow-y-auto max-h-[20rem] custom-scroll border border-gray-200 p-2"
             style={{ backgroundColor: bg, color: fg }}
           >
             {options.map((op, idx) => (

@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { LiaUtensilSpoonSolid } from "react-icons/lia";
 
-export const SearchForm = ({placeholder, size='1rem'}) => {
+export const SearchForm = ({placeholder, size='1rem', onSearch}) => {
 
   const [keyword, setKeyword] = useState('');
 
   const searchByKeyword = () => {
-    if(keyword){
-      console.log('buscando...',keyword)
-    }
+    onSearch(keyword)
   }
 
   const onChangeKeyword = ({target: {value}}) => setKeyword(value)

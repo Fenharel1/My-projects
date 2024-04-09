@@ -7,6 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../auth/context/AuthContext";
 import { IoLogOut } from "react-icons/io5";
 import { FiMenu } from "react-icons/fi";
+import { FaHandHoldingHeart } from "react-icons/fa";
 
 const options = [
   {
@@ -29,6 +30,11 @@ const options = [
     icon: <RiFilePaper2Fill></RiFilePaper2Fill>,
     link: "recipes",
   },
+  {
+    label: "Favorites",
+    icon: <FaHandHoldingHeart></FaHandHoldingHeart>,
+    link: "favorites"
+  }
 ];
 
 export const Sidebar = () => {
