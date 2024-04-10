@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.restapirant.backend.Models.UserLogin;
+import com.restapirant.backend.Models.UserToRegister;
 import com.restapirant.backend.Models.Entities.User;
 import com.restapirant.backend.Repositories.UserRepository;
 
@@ -45,11 +46,13 @@ public class UserService {
     return userDetails;
   }
 
-  public User registerUser(UserLogin register){
+  public User registerUser(UserToRegister register){
     var savedUser = repository.save(
       User.builder()
-      .email(register.getEmail())
-      .password(passwordEncoder.encode(register.getPassword()))
+      .email(register.email())
+      .firstname(register.firstname())
+      .lastname(register.lastname())
+      .password(passwordEncoder.encode(register.password()))
       .build()
       );
     

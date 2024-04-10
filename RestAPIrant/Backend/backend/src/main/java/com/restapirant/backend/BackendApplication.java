@@ -15,7 +15,7 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 
-	@Bean
+	// @Bean
 	public CommandLineRunner commandLineRunner(
 		UserRepository userRepo
 	){

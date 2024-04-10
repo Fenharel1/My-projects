@@ -3,7 +3,6 @@ package com.restapirant.backend.Config;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.boot.model.internal.ListBinder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.restapirant.backend.Repositories.UserRepository;
+
 
 import lombok.RequiredArgsConstructor;
 

@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restapirant.backend.Models.UserLogin;
+import com.restapirant.backend.Models.UserToRegister;
 import com.restapirant.backend.Services.AuthService;
 import com.restapirant.backend.Services.UserService;
 
@@ -29,7 +30,7 @@ public class AuthController {
   }
 
   @PostMapping("/register")
-  public ResponseEntity<?> register(@RequestBody UserLogin register) {
+  public ResponseEntity<?> register(@RequestBody UserToRegister register) {
     var registeredUser = userService.registerUser(register);
     return ResponseEntity.status(HttpStatus.CREATED).body(registeredUser);
   }
