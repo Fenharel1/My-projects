@@ -1,8 +1,11 @@
 package com.restapirant.backend.Models.Entities;
 
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
+import com.restapirant.backend.Repositories.RepositoryListener;
+
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,10 +20,11 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 @MappedSuperclass
+@EntityListeners(RepositoryListener.class)
 public class BaseEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private Date createdAt;
-  private Date updateAt;
+  private LocalDateTime createdAt;
+  private LocalDateTime updateAt;
 }

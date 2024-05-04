@@ -1,14 +1,11 @@
 package com.restapirant.backend.Services;
 
-import java.util.Date;
-import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
-import com.restapirant.backend.Models.UserLogged;
+import com.restapirant.backend.Models.DTOs.UserDTO;
 import com.restapirant.backend.Repositories.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -22,16 +19,30 @@ public class AuthService {
   private final AuthenticationManager authenticationManager;
   private final JwtService jwtService;
   private final UserRepository userRepository;
+  private final UserContext userContext;
 
-  public UserLogged login(String email, String password) {
+  public UserDTO.logged login(String email, String password) {
     authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
     var token = jwtService.createToken(email);
-    var user = userRepository.findByEmail(email);
-    return UserLogged.builder()
-      .email(email)
-      .token(token)
-      .firstname(user.getFirstname())
-      .lastname(user.getLastname())
-      .build();
+    var userOpt = userRepository.findByEmail(email);
+    if(userOpt.isPresent());
+    var user = userOpt.get();
+
+    userContext.setCurrentUserId(user.getId());
+
+    var userLogged = new UserDTO.logged();
+    userLogged.email = email;
+    userLogged.token = token;
+    userLogged.firstname = user.getFirstname();
+    userLogged.lastname = user.getLastname();
+
+    return userLogged;
+  }
+
+  public boolean forgotPassword(String email){
+    // validate email
+    // generate token
+    // send to email
+    return true;
   }
 }

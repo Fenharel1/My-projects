@@ -1,14 +1,13 @@
 package com.restapirant.backend.Services;
 
-import java.util.Date;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.restapirant.backend.Models.UserLogin;
-import com.restapirant.backend.Models.UserToRegister;
+import com.restapirant.backend.Models.DTOs.UserDTO;
 import com.restapirant.backend.Models.Entities.User;
 import com.restapirant.backend.Repositories.UserRepository;
 
@@ -20,19 +19,16 @@ public class UserService {
 
   private final UserRepository repository;
   private final PasswordEncoder passwordEncoder;
-
-  public User save(User user){
-    user.setCreatedAt(new Date());
-    var savedUser = repository.save(user);
-    return savedUser; 
-  }
+  private final ModelMapper mapper;
 
   public List<User> getAll(){
     return repository.findAll();
   }
 
   public org.springframework.security.core.userdetails.User getUserDetailsByEmail(String email){
-    var user = repository.findByEmail(email);
+    var userOpt = repository.findByEmail(email);
+    if(!userOpt.isPresent()) return null;
+    var user = userOpt.get(); 
     List<GrantedAuthority> authorities = null;
     var userDetails = new org.springframework.security.core.userdetails.User(
       user.getFirstname(),
@@ -46,16 +42,22 @@ public class UserService {
     return userDetails;
   }
 
-  public User registerUser(UserToRegister register){
-    var savedUser = repository.save(
-      User.builder()
-      .email(register.email())
-      .firstname(register.firstname())
-      .lastname(register.lastname())
-      .password(passwordEncoder.encode(register.password()))
-      .build()
-      );
-    
+  public UserDTO.saved registerUser(UserDTO.toRegister register){
+    var userToSave = User.builder()
+      .email(register.email)
+      .firstname(register.firstname)
+      .lastname(register.lastname)
+      .password(passwordEncoder.encode(register.password))
+      .alias(register.alias)
+      .build();
+    System.out.println(userToSave.toString());
+    var temp = repository.save(userToSave);
+    var savedUser = mapper.map(temp, UserDTO.saved.class);
+    System.out.println(savedUser.toString());
     return savedUser;
+  }
+
+  public UserDTO.saved updateUser(UserDTO.toUpdate updateUser){
+    return null;
   }
 }

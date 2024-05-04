@@ -3,6 +3,7 @@ package com.restapirant.backend.Config;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,7 +34,9 @@ public class ApplicationConfig {
   @Bean
   UserDetailsService getUserDetailsService() {
     return email -> {
-      var user = userRepository.findByEmail(email);
+      var userOpt = userRepository.findByEmail(email);
+      if(!userOpt.isPresent()) return null;
+      var user = userOpt.get();
       System.out.println(user.toString());
       List<GrantedAuthority> authorities = new ArrayList<>();
       var userDetails = new org.springframework.security.core.userdetails.User(
@@ -59,5 +62,10 @@ public class ApplicationConfig {
   @Bean
   public AuthenticationManager getAuthenticationManager(AuthenticationConfiguration config) throws Exception {
     return config.getAuthenticationManager();
+  }
+
+  @Bean
+  public ModelMapper modelMapper(){
+    return new ModelMapper();
   }
 }
