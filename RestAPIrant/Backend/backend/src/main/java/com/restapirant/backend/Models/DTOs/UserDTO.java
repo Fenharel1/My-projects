@@ -40,7 +40,6 @@ public class UserDTO {
     public String alias;
     public String email;
     public String password;
-    public MultipartFile profilePhoto;
   }
 
   @NoArgsConstructor

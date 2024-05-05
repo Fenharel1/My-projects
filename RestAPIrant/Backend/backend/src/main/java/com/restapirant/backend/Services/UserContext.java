@@ -14,4 +14,5 @@ import lombok.RequiredArgsConstructor;
 @Data
 public class UserContext {
   Long currentUserId;
+  String currentUserEmail;
 }
