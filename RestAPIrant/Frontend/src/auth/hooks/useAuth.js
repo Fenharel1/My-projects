@@ -16,6 +16,7 @@ export const useAuth = () => {
   const navigate = useNavigate();
 
   const handleLogin = (username, password, rememberme) => {
+    console.log(username, password)
     try{
       login(username, password)
       
@@ -23,7 +24,6 @@ export const useAuth = () => {
       const userImgUrl = "https://sb.kaleidousercontent.com/67418/1920x1545/c5f15ac173/samuel-raita-ridxdghg7pw-unsplash.jpg"
 
       dispatch({type:'login',payload:{username, img: userImgUrl }})
-      console.log(loginState)
       if(rememberme) setRememberme();
       setItemStorage('user',{isAuth: true, user: {username, img:userImgUrl}})
       navigate('/dashboard')

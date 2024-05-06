@@ -3,23 +3,24 @@ import { BsCheck } from 'react-icons/bs'
 import { AuthContext } from "../context/AuthContext";
 
 const initForm = {
-  username: '',
+  email: '',
   password: '',
   rememberme: false
 };
 
 export const FormLogin = () => {
 
-  const {login, handleLogin, errors} = useContext(AuthContext)
+  const { handleLogin, errors } = useContext(AuthContext)
 
-  const [formLogin, setFormLogin] = useState(initForm);
-  const { username, password, rememberme } = formLogin;
+  const [ formLogin, setFormLogin ] = useState(initForm);
+  const { email, password, rememberme } = formLogin;
 
   const InputTextStyle = "w-full h-[53px] border-[2px] border-[#E7E7E7] outline-none rounded-[5px] px-4 py-3";
 
   const onLogin = (e) => {
     e.preventDefault();
-    handleLogin(username, password, rememberme) 
+    console.log(email, password)
+    handleLogin(email, password, rememberme) 
   };
 
   const handleChange = ({ target: { value, name } }) => {
@@ -28,14 +29,14 @@ export const FormLogin = () => {
   return (
     <form onSubmit={(e) => onLogin(e)} className="space-y-9">
       <div>
-        <label className="font-medium text-lg block mb-2 " htmlFor="username">
-          User Name
+        <label className="font-medium text-lg block mb-2 " htmlFor="email">
+          Email
         </label>
         <input
           onChange={(e) => handleChange(e)}
-          value={username}
+          value={email}
           type="text"
-          name="username"
+          name="email"
           className={InputTextStyle}
         />
         <p className="text-red-400 my-1">{errors?.username}</p>
