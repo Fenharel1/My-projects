@@ -1,20 +1,33 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 
-const login = async (username, password) => {
-  response = await axios.post("http://localhost:5001/api/auth/login",{email: username, password});
+const authApi = axios.create({
+  baseURL: "http://localhost:5001/api",
+  headers: { "Content-Type": "application/json" },
+});
 
-  if(!response.data.errors){
-    return true;
+const basicCall = async (callback) => {
+  try {
+    const response = await callback();
+    return response.data;
+  } catch (e) {
+    if (e.response.status != 400) {
+      toast.error(e.response.data.description);
+    }
+    return { errors: e.response.data };
   }
-  else{
-    const errors = {username: '', password: ''}
-    throw errors
+};
+
+const authService = {
+  login: async (email, password) => {
+    return basicCall(() => authApi.post("/auth/login", { email, password }));
+  },
+  register: async (registerForm) => {
+    return basicCall(() => authApi.post("/auth/register", registerForm));
+  },
+  validUserData: async (dataForm) => {
+    return basicCall(() => authApi.post("/auth/validate-user",dataForm))
   }
-}
+};
 
-const register = (registerForm) => {
-  response = axios.post("http://localhost:5001/api/auth/register",registerForm)
-    .then((res)=>console.log(res));
-}
-
-export {login,register}
+export { authService };

@@ -1,7 +1,8 @@
 package com.restapirant.backend.Models.DTOs;
 
-import org.springframework.web.multipart.MultipartFile;
-
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,7 +19,9 @@ public class UserDTO {
   @NoArgsConstructor
   @Data
   public static class login{
+    @NotBlank
     public String email;
+    @Size(min = 6, max = 20)
     public String password;
   }
 
@@ -40,6 +43,19 @@ public class UserDTO {
     public String alias;
     public String email;
     public String password;
+  }
+
+  @NoArgsConstructor
+  @Data
+  public static class validUserData{
+    @NotBlank
+    public String firstname;
+    @NotBlank
+    public String lastname;
+    public String alias;
+    @NotBlank
+    @Email
+    public String email;
   }
 
   @NoArgsConstructor

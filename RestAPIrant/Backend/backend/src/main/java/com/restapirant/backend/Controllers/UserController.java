@@ -10,10 +10,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
+
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
-public class UserController {
+public class UserController extends BaseController {
 
   private final UserService service;
 
@@ -21,4 +22,6 @@ public class UserController {
   public ResponseEntity<?> getAll() {
     return ResponseEntity.ok(service.getAll());
   }
+
+  
 }

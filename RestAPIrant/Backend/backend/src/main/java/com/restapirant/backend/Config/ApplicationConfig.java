@@ -6,6 +6,7 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -15,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.restapirant.backend.Models.DTOs.BaseException;
 import com.restapirant.backend.Repositories.UserRepository;
 
 
@@ -35,7 +37,7 @@ public class ApplicationConfig {
   UserDetailsService getUserDetailsService() {
     return email -> {
       var userOpt = userRepository.findByEmail(email);
-      if(!userOpt.isPresent()) return null;
+      if(!userOpt.isPresent()) throw new BaseException("Email not found", HttpStatus.NOT_FOUND);
       var user = userOpt.get();
       System.out.println(user.toString());
       List<GrantedAuthority> authorities = new ArrayList<>();

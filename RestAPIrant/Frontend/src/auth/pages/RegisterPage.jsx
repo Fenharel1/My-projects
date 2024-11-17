@@ -1,28 +1,40 @@
-import { NavLink  } from "react-router-dom";
+import { NavLink, useNavigate  } from "react-router-dom";
 import { RegisterForm } from "../components/RegisterForm";
 import { PasswordForm } from "../components/PasswordForm";
 import { useState } from "react";
-import { register } from "../services/authService"
+import { authService } from "../services/authService";
+import toast from "react-hot-toast";
 
 export const RegisterPage = () => {
 
   const [formRegister,setFormRegister] = useState(null);
 
+  const [errors, setErrors] = useState({})
+
   const [registrationStep, setRegistrationStep] = useState(0);
 
-  const handleFirstStep = (e,dataform) => {
+  const navigate = useNavigate();
+
+  const handleFirstStep = async (e,dataform) => {
     e.preventDefault();
-    setFormRegister(dataform);
-    setRegistrationStep(1);
+    const response = await authService.validUserData(dataform);
+    console.log(response);
+    if(response.errors){
+      if(errors.status) toast.error(errors.description)
+      else setErrors(response.errors);
+    }else{
+      setFormRegister(dataform);
+      setRegistrationStep(1);
+    }
   }
 
   const handleBack = () => {
     setRegistrationStep(0);
   }
-  const handleSubmit = (e,passform) => {
-    e.preventDefault();
-    console.log({...passform, ...formRegister})
-    register({...passform, ...formRegister});
+  const handleSubmit = (passform) => {
+    const response = authService.register({...passform, ...formRegister});
+    toast.success("You've been registered successfully!");
+    navigate("/auth/login");  
   }
 
   return (
@@ -34,7 +46,7 @@ export const RegisterPage = () => {
           information for create a new account!
         </p>
         { registrationStep == 0 ? 
-          (<RegisterForm initData={formRegister ?? undefined} onContinue={handleFirstStep}></RegisterForm>)
+          (<RegisterForm errors={errors} initData={formRegister ?? undefined} onContinue={handleFirstStep}></RegisterForm>)
           :
           (<PasswordForm onBack={handleBack} onSubmit={handleSubmit} ></PasswordForm>)
         }

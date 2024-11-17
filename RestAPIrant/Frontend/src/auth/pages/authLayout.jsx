@@ -1,8 +1,6 @@
 import React from 'react'
-import { FormLogin } from "../components/LoginForm";
-import { Outlet, Route, Routes } from 'react-router-dom';
-import { LoginPage } from './LoginPage';
-import { RegisterPage } from './RegisterPage';
+import { Outlet } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 export const AuthLayout = () => {
   return (
@@ -21,6 +19,13 @@ export const AuthLayout = () => {
           <Outlet></Outlet>
         </div>
       </div>
+      <Toaster
+        position='top-right'
+        toastOptions={{
+          className: "[&>div:nth-child(1)]:scale-150 text-xl space-x-4 [&>div:nth-child(1)]:ml-3 [&>div:nth-child(2)]:pr-3",
+          duration: 4000
+        }}
+      ></Toaster>
     </div>
   );
 }

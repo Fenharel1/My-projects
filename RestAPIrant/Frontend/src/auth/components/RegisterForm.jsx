@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const initForm = {
   firstname: "",
@@ -7,7 +7,7 @@ const initForm = {
   alias: "",
 };
 
-export const RegisterForm = ({onContinue, initData = initForm}) => {
+export const RegisterForm = ({onContinue, initData = initForm, errors = null}) => {
   const [formRegister, setFormRegister] = useState(initData);
 
   const labels = {
@@ -40,6 +40,7 @@ export const RegisterForm = ({onContinue, initData = initForm}) => {
               name={fieldName}
               className={InputTextStyle}
             />
+            <p className="text-red-400 my-1">{ !errors || errors[fieldName] }</p>
           </div>
         );
       })}

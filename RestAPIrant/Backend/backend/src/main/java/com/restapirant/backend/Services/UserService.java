@@ -3,10 +3,12 @@ package com.restapirant.backend.Services;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.restapirant.backend.Models.DTOs.BaseException;
 import com.restapirant.backend.Models.DTOs.UserDTO;
 import com.restapirant.backend.Models.Entities.User;
 import com.restapirant.backend.Repositories.UserRepository;
@@ -27,7 +29,7 @@ public class UserService {
 
   public org.springframework.security.core.userdetails.User getUserDetailsByEmail(String email){
     var userOpt = repository.findByEmail(email);
-    if(!userOpt.isPresent()) return null;
+    if(!userOpt.isPresent()) throw new BaseException("Email not found", HttpStatus.NOT_FOUND);
     var user = userOpt.get(); 
     List<GrantedAuthority> authorities = null;
     var userDetails = new org.springframework.security.core.userdetails.User(
@@ -59,5 +61,10 @@ public class UserService {
 
   public UserDTO.saved updateUser(UserDTO.toUpdate updateUser){
     return null;
+  }
+
+  public void validateUser(UserDTO.validUserData userData){
+    var user = repository.findByEmail(userData.getEmail());
+    if(user.isPresent()) throw new BaseException("This email is already registered", HttpStatus.BAD_REQUEST);
   }
 }

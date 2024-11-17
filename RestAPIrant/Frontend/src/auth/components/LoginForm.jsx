@@ -19,7 +19,6 @@ export const FormLogin = () => {
 
   const onLogin = (e) => {
     e.preventDefault();
-    console.log(email, password)
     handleLogin(email, password, rememberme) 
   };
 
@@ -39,7 +38,7 @@ export const FormLogin = () => {
           name="email"
           className={InputTextStyle}
         />
-        <p className="text-red-400 my-1">{errors?.username}</p>
+        <p className="text-red-400 my-1">{errors?.email}</p>
       </div>
       <div>
         <label className="font-medium text-lg block mb-2" htmlFor="password">
